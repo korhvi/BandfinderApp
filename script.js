@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 async function fetchArtistInfo(artist) {
     const apiKey = 'dfa5ecd46c640751eb3a57f30ae610ce';
-    const artistInfoUrl = `http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`;
+    const artistInfoUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`;
 
     try {
         const response = await fetch(artistInfoUrl);
@@ -24,18 +24,18 @@ async function fetchArtistInfo(artist) {
         if (data.artist) {
             const mbid = data.artist.mbid;
             if (mbid) {
-                const topTracksUrl = `http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`;
+                const topTracksUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`;
                 const topTracksResponse = await fetch(topTracksUrl);
                 const topTracksData = await topTracksResponse.json();
                 displayTopTracks(topTracksData);
             }
 
-            const albumInfoUrl = `http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`;
+            const albumInfoUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`;
             const albumResponse = await fetch(albumInfoUrl);
             const albumData = await albumResponse.json();
             displayTopAlbums(albumData);
 
-            const similarArtistsUrl = `http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`;
+            const similarArtistsUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`;
             const similarArtistsResponse = await fetch(similarArtistsUrl);
             const similarArtistsData = await similarArtistsResponse.json();
             displaySimilarArtists(similarArtistsData);
