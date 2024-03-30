@@ -90,3 +90,39 @@ footer {
     background: none; /* Poistetaan taustaväri */
     border: none; /* Poistetaan reunaviiva */
 }
+
+/* Albumit ja similar artistit */
+.album-container, .similar-artist-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+ .similar-artist {
+    width: calc(25% - 10px);
+    margin-bottom: 20px;
+    cursor: pointer; /* Tee similar artisteista painettavan näköisiä */
+}
+
+.album img, {
+    max-width: 100%;
+    height: auto;
+}
+
+.top-tracks-container {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+
+ .similar-artist {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+    cursor: pointer;
+}
+
+
