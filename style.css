@@ -1,4 +1,3 @@
-/* Perustyylit */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -79,29 +78,27 @@ footer {
     }
 }
 
-/* Lisätään otsikolle tyyli */
 .header-title {
-    cursor: pointer; /* Osoitin muutetaan käsiosoittimeksi */
-    margin: 0; /* Poistetaan mahdollinen marginaali */
-    padding: 10px; /* Lisätään hieman tilaa ympärille */
-    color: #ffffff; /* Otsikon väri */
-    font-size: 24px; /* Otsikon fonttikoko */
-    font-weight: bold; /* Korostetaan otsikkoa */
-    background: none; /* Poistetaan taustaväri */
-    border: none; /* Poistetaan reunaviiva */
+    cursor: pointer; 
+    margin: 0; 
+    padding: 10px;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    background: none;
+    border: none;
 }
 
-/* Albumit ja similar artistit */
 .album-container, .similar-artist-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
- .similar-artist {
+.similar-artist {
     width: calc(25% - 10px);
     margin-bottom: 20px;
-    cursor: pointer; /* Tee similar artisteista painettavan näköisiä */
+    cursor: pointer; 
 }
 
 .album img, {
@@ -115,8 +112,7 @@ footer {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
-
- .similar-artist {
+.similar-artist {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
