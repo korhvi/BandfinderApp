@@ -1,12 +1,92 @@
+/* Perustyylit */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #search-container {
     text-align: center;
-    margin-top: 20px;
+    margin: 20px 0;
+}
+
+#search-input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#search-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#search-button:hover {
+    background-color: #4cae4c;
 }
 
 #results {
     margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    header, footer {
+        padding: 10px 0;
+    }
+
+    .container {
+        width: 95%;
+    }
+
+    #search-input {
+        width: 80%;
+    }
+
+    #search-button {
+        padding: 10px;
+    }
+}
+
+/* Lisätään otsikolle tyyli */
+.header-title {
+    cursor: pointer; /* Osoitin muutetaan käsiosoittimeksi */
+    margin: 0; /* Poistetaan mahdollinen marginaali */
+    padding: 10px; /* Lisätään hieman tilaa ympärille */
+    color: #ffffff; /* Otsikon väri */
+    font-size: 24px; /* Otsikon fonttikoko */
+    font-weight: bold; /* Korostetaan otsikkoa */
+    background: none; /* Poistetaan taustaväri */
+    border: none; /* Poistetaan reunaviiva */
 }

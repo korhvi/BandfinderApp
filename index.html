@@ -7,11 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="search-container">
-        <input type="text" id="search-input" placeholder="Search for a band...">
-        <button id="search-button">Search</button>
+    <header>
+        <h1 id="home-button" class="header-title">Band Finder</h1>
+    </header>
+    <div class="container">
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="Search for a band...">
+            <button id="search-button">Search</button>
+        </div>
+        <div id="results"></div>
     </div>
-    <div id="results"></div>
+    <footer>
+        <p>Powered by LastFM API</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
