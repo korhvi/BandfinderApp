@@ -2,15 +2,27 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f7e0a8; 
     color: #333;
+    background-image: url(background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
     padding: 20px 0;
     text-align: center;
+}
+
+.header-logo {
+    width: 200px;
+    height: auto;
+    cursor: pointer;
 }
 
 .container {
@@ -20,6 +32,7 @@ header {
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 #search-container {
@@ -30,7 +43,7 @@ header {
 #search-input {
     width: 70%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #e0e0e0; 
     border-radius: 5px;
     font-size: 16px;
 }
@@ -38,7 +51,7 @@ header {
 #search-button {
     padding: 10px 20px;
     border: none;
-    background-color: #5cb85c;
+    background-color: #805a3e; 
     color: white;
     border-radius: 5px;
     cursor: pointer;
@@ -46,7 +59,7 @@ header {
 }
 
 #search-button:hover {
-    background-color: #4cae4c;
+    background-color: #684832; 
 }
 
 #results {
@@ -56,8 +69,7 @@ header {
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #333;
-    color: white;
+    margin-top: auto;
 }
 
 @media (max-width: 600px) {
@@ -82,14 +94,14 @@ footer {
     cursor: pointer; 
     margin: 0; 
     padding: 10px;
-    color: #ffffff;
+    color: #f7e0a8; 
     font-size: 24px;
     font-weight: bold;
     background: none;
     border: none;
 }
 
-.album-container, .similar-artist-container {
+.similar-artist-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -101,10 +113,7 @@ footer {
     cursor: pointer; 
 }
 
-.album img, {
-    max-width: 100%;
-    height: auto;
-}
+
 
 .top-tracks-container {
     display: grid;
@@ -114,7 +123,7 @@ footer {
 
 .similar-artist {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #e0e0e0; 
     border-radius: 5px;
     background-color: #f9f9f9;
     text-align: center;
@@ -122,3 +131,29 @@ footer {
 }
 
 
+.album-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.album {
+    position: relative;
+
+}
+
+.album img {
+    width: 200px;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.album p {
+    text-align: center;
+}
+
+.album:hover img {
+    transform: scale(1.1);
+}

@@ -1,9 +1,12 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     const searchButton = document.getElementById('search-button');
-    searchButton.addEventListener('click', function () {
-        const artistName = document.getElementById('search-input').value;
-        fetchArtistInfo(artistName);
+    const searchInput = document.getElementById('search-input');
+
+    searchButton.addEventListener('click', searchHandler);
+    searchInput.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            searchHandler();
+        }
     });
 
     const homeButton = document.getElementById('home-button');
@@ -11,6 +14,11 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'index.html';
     });
 });
+
+async function searchHandler() {
+    const artistName = document.getElementById('search-input').value;
+    await fetchArtistInfo(artistName);
+}
 
 async function fetchArtistInfo(artist) {
     const apiKey = 'dfa5ecd46c640751eb3a57f30ae610ce';
