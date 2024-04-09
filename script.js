@@ -16,8 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 async function searchHandler() {
-    const artistName = document.getElementById('search-input').value;
-    await fetchArtistInfo(artistName);
+    const artistName = document.getElementById('search-input').value.trim();
+    if (artistName !== '') { 
+        await fetchArtistInfo(artistName);
+    }
 }
 
 async function fetchArtistInfo(artist) {
@@ -30,18 +32,17 @@ async function fetchArtistInfo(artist) {
         displayArtistInfo(data);
 
         if (data.artist) {
-            const mbid = data.artist.mbid;
-            if (mbid) {
-                const topTracksUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`;
-                const topTracksResponse = await fetch(topTracksUrl);
-                const topTracksData = await topTracksResponse.json();
-                displayTopTracks(topTracksData);
-            }
-
             const albumInfoUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`;
             const albumResponse = await fetch(albumInfoUrl);
             const albumData = await albumResponse.json();
             displayTopAlbums(albumData);
+
+            if (albumData.topalbums && albumData.topalbums.album.length > 0) {
+                for (let i = 0; i < Math.min(albumData.topalbums.album.length, 4); i++) {
+                    const albumName = albumData.topalbums.album[i].name;
+                    await displayAlbumTracks(artist, albumName);
+                }
+            }
 
             const similarArtistsUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`;
             const similarArtistsResponse = await fetch(similarArtistsUrl);
@@ -65,33 +66,56 @@ function displayArtistInfo(data) {
     }
 }
 
-async function displayTopTracks(topTracksData) {
-    const resultsDiv = document.getElementById('results');
-    if (topTracksData.toptracks && topTracksData.toptracks.track.length > 0) {
-        let topTracksHTML = '<h3>Top Tracks:</h3><div class="top-tracks-container">';
-        topTracksData.toptracks.track.slice(0, 15).forEach(track => {
-            topTracksHTML += `<div class="top-track" onclick="playTrack('${track.name}')">${track.name}</div>`;
-        });
-        topTracksHTML += '</div>';
-        resultsDiv.insertAdjacentHTML('beforeend', topTracksHTML);
-    }
-}
-
-
 function displayTopAlbums(albumData) {
     const resultsDiv = document.getElementById('results');
     if (albumData.topalbums && albumData.topalbums.album.length > 0) {
         let topAlbumsHTML = '<h3>Top Albums:</h3><div class="album-container">';
-        albumData.topalbums.album.slice(0, 3).forEach(album => {
-            topAlbumsHTML += `<div class="album">
-                                <img src="${album.image[2]['#text']}" alt="${album.name}">
+        albumData.topalbums.album.slice(0, 4).forEach(album => {
+            const imageIndex = 3;
+            const imageUrl = album.image[imageIndex]['#text'];
+            topAlbumsHTML += `<div class="album" id="${album.name}" onmouseover="displayAlbumTracks('${encodeURIComponent(album.artist.name)}', '${album.name}')">
+                                <img src="${imageUrl}" alt="${album.name}">
                                 <p>${album.name}</p>
+                                <div class="album-tracks" id="${album.name}-tracks"></div>
                               </div>`;
         });
         topAlbumsHTML += '</div>';
         resultsDiv.insertAdjacentHTML('beforeend', topAlbumsHTML);
     }
 }
+
+
+
+async function displayAlbumTracks(artist, albumName) {
+    const apiKey = 'dfa5ecd46c640751eb3a57f30ae610ce';
+    const artistEncoded = encodeURIComponent(artist);
+    const albumEncoded = encodeURIComponent(albumName);
+    const tracksInfoUrl = `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=${artistEncoded}&album=${albumEncoded}&api_key=${apiKey}&format=json`;
+
+    try {
+        const albumTracksDiv = document.getElementById(`${albumName}-tracks`);
+        albumTracksDiv.classList.add('tracks');
+        const tracksResponse = await fetch(tracksInfoUrl);
+        if (!tracksResponse.ok) {
+            throw new Error('Failed to fetch album tracks');
+        }
+        
+        const tracksData = await tracksResponse.json();
+        const tracksHTML = tracksData.album.tracks.track.map((track, index) => `<p>${index + 1}. ${track.name}</p>`).join('');
+        
+        albumTracksDiv.innerHTML = tracksHTML;
+
+        albumTracksDiv.style.overflowY = 'auto';
+        albumTracksDiv.style.maxHeight = '400px';
+        albumTracksDiv.style.position = 'absolute';
+        albumTracksDiv.style.right = '10px';
+    } catch (error) {
+        console.error('Error fetching album tracks:', error);
+    }
+}
+
+
+
 
 function displaySimilarArtists(similarArtistsData) {
     const resultsDiv = document.getElementById('results');
@@ -104,3 +128,4 @@ function displaySimilarArtists(similarArtistsData) {
         resultsDiv.insertAdjacentHTML('beforeend', similarArtistsHTML);
     }
 }
+
