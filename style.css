@@ -167,7 +167,6 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
     margin-top: 20px;
     z-index: 1;
 }
@@ -175,20 +174,21 @@ footer {
 .album {
     position: relative;
     margin-bottom: 10px;
-    padding: 70px;
+    padding: 70px 100px;
     z-index: 1;
     overflow: hidden;
 }
 
 .album img {
-    width: 250px;
+    width: 300px;
+    transform: translate(+80px);
     height: auto;
     transition: transform 0.3s ease-in-out, left 0.3s ease-in-out 0.1s;
 }
 
 .album:hover img {
-    transform: scale(1.1) translateX(-50px);
-    left: -50px;
+    transform: scale(1.1) translateX(+10px);
+    left: +10px;
 }
 
 .album p {
@@ -196,7 +196,7 @@ footer {
 }
 
 .album:hover img {
-    transform: scale(1.1) translateX(-50px);
+    transform: scale(1.1) translateX(+10px);
 }
 
 
@@ -204,10 +204,9 @@ footer {
     content: '';
     position: absolute;
     top: 60px;
-    left: 30%;
-    transform: translate(-50%, -50%);
-    width: 275px;
-    height: 275px;
+    left: 20%;
+    width: 325px;
+    height: 325px;
     background: url('https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Music-PNG/Vinyl_Record_PNG_Transparent_Clipart.png?m=1642584753') center no-repeat; /* Use provided vinyl image */
     background-size: contain;
     z-index: -1;
@@ -230,7 +229,7 @@ footer {
 @keyframes moveRight {
     from {
         top: 100px;
-        left: 20%;
+        left: 300px;
     }
 
 }
@@ -241,8 +240,8 @@ footer {
         height: 1px;
     }
     to {
-        width: 275px;
-        height: 275px;
+        width: 325px;
+        height: 325px;
     }
 }
 
@@ -258,12 +257,13 @@ footer {
 
 .tracks {
     position: absolute;
-    top: 12%;
-    left: 55%;
-    width: 200px;
-    height: 280px;
-    background-color: rgba(255, 255, 255, 0.8);
-    z-index: 1;
+    top: 11%;
+    left: 57%;
+    width: 250px;
+    height: 325px;
+    background-color: rgba(65, 65, 65, 0.8);
+    color: #ffffff;
+    z-index: 0;
     text-align: center;
     padding: 20px;
     box-sizing: border-box;
@@ -274,4 +274,71 @@ footer {
     display: none;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+button {
+    padding: 0;
+    margin: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+button:focus {
+    outline: none;
+}
+
+
+#prev-btn,
+#next-btn {
+    width: 90px;
+    height: 90px;
+    font-size: 40px;
+    font-weight: bold;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background-color: rgba(255, 255, 255, 0.5); 
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    position: absolute;
+    top: calc(50% - 45px);
+}
+
+#prev-btn {
+    left: -10px; 
+}
+
+#next-btn {
+    right: -10px;
+}
+
+#prev-btn:hover,
+#next-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#prev-btn:active,
+#next-btn:active {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#prev-btn:focus,
+#next-btn:focus {
+    outline: none;
+}
+
+#prev-btn:hover svg,
+#next-btn:hover svg {
+    fill: #000;
+}
+
+#prev-btn:active svg,
+#next-btn:active svg {
+    fill: #111;
+}
+
+#prev-btn:focus svg,
+#next-btn:focus svg {
+    fill: #333;
 }

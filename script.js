@@ -35,20 +35,13 @@ async function fetchArtistInfo(artist) {
             const albumInfoUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`;
             const albumResponse = await fetch(albumInfoUrl);
             const albumData = await albumResponse.json();
-            displayTopAlbums(albumData);
-
-            if (albumData.topalbums && albumData.topalbums.album.length > 0) {
-                for (let i = 0; i < Math.min(albumData.topalbums.album.length, 4); i++) {
-                    const albumName = albumData.topalbums.album[i].name;
-                    await displayAlbumTracks(artist, albumName);
-                }
-            }
-
-            const similarArtistsUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`;
-            const similarArtistsResponse = await fetch(similarArtistsUrl);
-            const similarArtistsData = await similarArtistsResponse.json();
-            displaySimilarArtists(similarArtistsData);
+            displayTopAlbum(albumData);
         }
+
+        const similarArtistsUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`;
+        const similarArtistsResponse = await fetch(similarArtistsUrl);
+        const similarArtistsData = await similarArtistsResponse.json();
+        displaySimilarArtists(similarArtistsData);
     } catch (error) {
         console.error('Error fetching artist info:', error);
     }
@@ -66,21 +59,73 @@ function displayArtistInfo(data) {
     }
 }
 
-function displayTopAlbums(albumData) {
+function displayTopAlbum(albumData) {
     const resultsDiv = document.getElementById('results');
     if (albumData.topalbums && albumData.topalbums.album.length > 0) {
-        let topAlbumsHTML = '<h3>Top Albums:</h3><div class="album-container">';
-        albumData.topalbums.album.slice(0, 4).forEach(album => {
-            const imageIndex = 3;
-            const imageUrl = album.image[imageIndex]['#text'];
-            topAlbumsHTML += `<div class="album" id="${album.name}" onmouseover="displayAlbumTracks('${encodeURIComponent(album.artist.name)}', '${album.name}')">
-                                <img src="${imageUrl}" alt="${album.name}">
-                                <p>${album.name}</p>
-                                <div class="album-tracks" id="${album.name}-tracks"></div>
-                              </div>`;
+        let currentIndex = 0; 
+        const albums = albumData.topalbums.album; 
+        const album = albums[currentIndex]; 
+        const imageIndex = 3;
+        const imageUrl = album.image[imageIndex]['#text'];
+        const albumName = album.name;
+        const artistName = album.artist.name;
+
+        resultsDiv.innerHTML += `<div class="album" id="${albumName}">
+                                    <img src="${imageUrl}" alt="${albumName}">
+                                    <p>${albumName}</p>
+                                    <div class="album-tracks" id="${albumName}-tracks"></div>
+                                    <button id="prev-btn">&lt;</button>
+                                    <button id="next-btn">&gt;</button>
+                                </div>`;
+        displayAlbumTracks(artistName, albumName);
+
+        const prevButton = document.getElementById('prev-btn');
+        const nextButton = document.getElementById('next-btn');
+
+        prevButton.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateAlbum(currentIndex);
+            }
         });
-        topAlbumsHTML += '</div>';
-        resultsDiv.insertAdjacentHTML('beforeend', topAlbumsHTML);
+
+        nextButton.addEventListener('click', () => {
+            if (currentIndex < albums.length - 1) {
+                currentIndex++;
+                updateAlbum(currentIndex);
+            }
+        });
+
+        function updateAlbum(index) {
+            const newAlbum = albums[index];
+            const newImageUrl = newAlbum.image[imageIndex]['#text'];
+            const newAlbumName = newAlbum.name;
+            const newArtistName = newAlbum.artist.name;
+
+            const albumDiv = document.getElementById(`${albumName}`);
+            albumDiv.innerHTML = `<img src="${newImageUrl}" alt="${newAlbumName}">
+                                    <p>${newAlbumName}</p>
+                                    <div class="album-tracks" id="${newAlbumName}-tracks"></div>
+                                    <button id="prev-btn">&lt;</button>
+                                    <button id="next-btn">&gt;</button>`;
+
+            displayAlbumTracks(newArtistName, newAlbumName);
+
+            const newPrevButton = document.getElementById('prev-btn');
+            const newNextButton = document.getElementById('next-btn');
+
+            newPrevButton.addEventListener('click', () => {
+                if (index > 0) {
+                    updateAlbum(index - 1);
+                }
+            });
+
+            newNextButton.addEventListener('click', () => {
+                if (index < albums.length - 1) {
+                    updateAlbum(index + 1);
+                }
+            });
+        }
     }
 }
 
@@ -114,9 +159,6 @@ async function displayAlbumTracks(artist, albumName) {
     }
 }
 
-
-
-
 function displaySimilarArtists(similarArtistsData) {
     const resultsDiv = document.getElementById('results');
     if (similarArtistsData.similarartists && similarArtistsData.similarartists.artist.length > 0) {
@@ -128,4 +170,3 @@ function displaySimilarArtists(similarArtistsData) {
         resultsDiv.insertAdjacentHTML('beforeend', similarArtistsHTML);
     }
 }
-
