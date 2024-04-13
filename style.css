@@ -1,8 +1,8 @@
+/* Reset */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7e0a8;
     color: #333;
     background-image: url(background.png);
     background-size: cover;
@@ -14,6 +14,7 @@ body {
     flex-direction: column;
 }
 
+/* Header */
 header {
     padding: 20px 0;
     text-align: center;
@@ -25,9 +26,10 @@ header {
     cursor: pointer;
 }
 
+/* Container */
 .container {
-    width: 90%;
-    max-width: 800px;
+    width: 100%;
+    max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
@@ -35,6 +37,7 @@ header {
     border-radius: 10px;
 }
 
+/* Search */
 #search-container {
     text-align: center;
     margin: 20px 0;
@@ -66,12 +69,14 @@ header {
     margin-top: 20px;
 }
 
+/* Footer */
 footer {
     text-align: center;
     padding: 20px;
     margin-top: auto;
 }
 
+/* Responsive */
 @media (max-width: 600px) {
     header,
     footer {
@@ -91,7 +96,7 @@ footer {
     }
 
     .header-logo {
-        width: 150px; 
+        width: 150px;
     }
 
     .header-title {
@@ -99,6 +104,7 @@ footer {
     }
 }
 
+/* Similar artists */
 .similar-artist-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -157,65 +163,75 @@ footer {
     background: linear-gradient(45deg, #ffd700, #ffa500);
 }
 
-
-
-
-
-
-
+/* Albums */
 .album-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
-    z-index: 1;
 }
 
 .album {
     position: relative;
     margin-bottom: 10px;
-    padding: 70px 100px;
-    z-index: 1;
+    padding: 50px 50px; 
     overflow: hidden;
 }
 
-.album img {
-    width: 300px;
-    transform: translate(+80px);
-    height: auto;
-    transition: transform 0.3s ease-in-out, left 0.3s ease-in-out 0.1s;
+.album-name {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.album:hover img {
-    transform: scale(1.1) translateX(+10px);
+
+.album-image-1 {
+    position: relative;
+    width: 300px;
+    transform: translate(+300px);
+    height: auto;
+    transition: transform 0.3s ease-in-out, left 0.3s ease-in-out 0.1s;
+    z-index: 2;
+}
+
+.album-image-2 {
+    position: absolute;
+    width: 12%; 
+    border-radius: 60%;
+    left: 40%; 
+    top: 30%; 
+    z-index: 1;
+    opacity: 0;
+    animation: spin 5s linear infinite;
+}
+
+.album:hover .album-image-1 {
+    transform: scale(1.1) translateX(+70px);
     left: +10px;
+}
+
+.album:hover .album-image-2 {
+    opacity: 1;
 }
 
 .album p {
     text-align: center;
 }
 
-.album:hover img {
-    transform: scale(1.1) translateX(+10px);
-}
-
-
 .album:hover::before {
     content: '';
     position: absolute;
-    top: 60px;
-    left: 20%;
+    top: 8%;
+    left: 30%;
     width: 325px;
     height: 325px;
-    background: url('https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Music-PNG/Vinyl_Record_PNG_Transparent_Clipart.png?m=1642584753') center no-repeat; /* Use provided vinyl image */
+    background: url('https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Music-PNG/Vinyl_Record_PNG_Transparent_Clipart.png?m=1642584753') center no-repeat; /* Vinyyli */
     background-size: contain;
-    z-index: -1;
+    z-index: 0;
     transition: opacity 0.3s ease-in-out;
     transition-delay: 1s;
     opacity: 0;
     animation: spin 5s linear infinite, moveRight 0.3s ease-in-out, grow 0.3s ease-in-out;
 }
-
 
 @keyframes spin {
     from {
@@ -229,9 +245,8 @@ footer {
 @keyframes moveRight {
     from {
         top: 100px;
-        left: 300px;
+        left: 400px;
     }
-
 }
 
 @keyframes grow {
@@ -245,7 +260,6 @@ footer {
     }
 }
 
-
 .album:hover::before {
     opacity: 1;
 }
@@ -257,10 +271,10 @@ footer {
 
 .tracks {
     position: absolute;
-    top: 11%;
-    left: 57%;
+    top: 8%;
+    left: 63%;
     width: 250px;
-    height: 325px;
+    height: 331px;
     background-color: rgba(65, 65, 65, 0.8);
     color: #ffffff;
     z-index: 0;
@@ -276,7 +290,7 @@ footer {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
+/* Buttons */
 button {
     padding: 0;
     margin: 10px;
@@ -290,7 +304,6 @@ button:focus {
     outline: none;
 }
 
-
 #prev-btn,
 #next-btn {
     width: 90px;
@@ -302,15 +315,15 @@ button:focus {
     background-color: rgba(255, 255, 255, 0.5); 
     transition: background-color 0.3s, border-color 0.3s, color 0.3s;
     position: absolute;
-    top: calc(50% - 45px);
+    top: calc(50% - 80px);
 }
 
 #prev-btn {
-    left: -10px; 
+    left: -0px; 
 }
 
 #next-btn {
-    right: -10px;
+    right: -0px;
 }
 
 #prev-btn:hover,
@@ -342,3 +355,4 @@ button:focus {
 #next-btn:focus svg {
     fill: #333;
 }
+
