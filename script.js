@@ -121,13 +121,23 @@ function displayTopAlbum(albumData) {
         albumTracksDiv.classList.add('album-tracks'); // Add class for styling
         albumTracksDiv.id = `${albumName}-tracks`; // Set ID for identifying album tracks
 
-        const prevButton = document.createElement('button'); // Create button for previous album
+        // Create a button for navigating to the previous album
+        const prevButton = document.createElement('button');
         prevButton.id = 'prev-btn'; // Set ID for styling
-        prevButton.innerHTML = '&lt;'; // Set inner HTML for button content
+        prevButton.innerHTML = `
+            <svg viewBox="0 0 24 24" width="60" height="60" fill="currentColor">
+                <polygon points="14,6 8,12 14,18"/>
+            </svg>
+        `; // Set SVG as inner HTML for button content to look like a left-pointing triangle
 
-        const nextButton = document.createElement('button'); // Create button for next album
+        // Create a button for navigating to the next album
+        const nextButton = document.createElement('button');
         nextButton.id = 'next-btn'; // Set ID for styling
-        nextButton.innerHTML = '&gt;'; // Set inner HTML for button content
+        nextButton.innerHTML = `
+            <svg viewBox="0 0 24 24" width="60" height="60" fill="currentColor">
+                <polygon points="10,6 16,12 10,18"/>
+            </svg>
+        `; // Set SVG as inner HTML for button content to look like a right-pointing triangle
 
         // Append elements to album div
         albumDiv.appendChild(img1); // Append first image
