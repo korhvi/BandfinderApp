@@ -42,4 +42,4 @@ This web application utilizes the Last.fm API to fetch information about artists
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
