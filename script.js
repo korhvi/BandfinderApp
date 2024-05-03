@@ -28,7 +28,7 @@ async function searchHandler() {
 }
 
 //api key
-const apiKey = 'dfa5ecd46c640751eb3a57f30ae610ce';
+const apiKey = YOUR_API_KEY;
 
 // Function to fetch artist information from Last.fm API
 async function fetchArtistInfo(artist) {
