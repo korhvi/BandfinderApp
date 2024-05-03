@@ -36,7 +36,7 @@ This web application utilizes the Last.fm API to fetch information about artists
 
 ## Netlify
 
-- **Netlify**: https://echobands.netlify.app/
+- **Netlify**: [https://echobands.netlify.app/](https://bandfinder.netlify.app/)
 
   [![Netlify Status](https://api.netlify.com/api/v1/badges/9e54446b-b2f0-4e75-8a7e-3137bb1b83ee/deploy-status)](https://app.netlify.com/sites/bandfinder/deploys)
 
