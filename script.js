@@ -27,9 +27,11 @@ async function searchHandler() {
     }
 }
 
+//api key
+const apiKey = 'dfa5ecd46c640751eb3a57f30ae610ce';
+
 // Function to fetch artist information from Last.fm API
 async function fetchArtistInfo(artist) {
-    const apiKey = 'dfa5ecd46c640751eb3a57f30ae610ce'; // Last.fm API key
     const artistInfoUrl = `https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${encodeURIComponent(artist)}&api_key=${apiKey}&format=json`; // API URL
 
     try {
@@ -202,7 +204,6 @@ function displayTopAlbum(albumData) {
 
 // Function to fetch and display album tracks
 async function displayAlbumTracks(artist, albumName) {
-    const apiKey = 'dfa5ecd46c640751eb3a57f30ae610ce'; // Last.fm API key
     const artistEncoded = encodeURIComponent(artist); // Encode artist name
     const albumEncoded = encodeURIComponent(albumName); // Encode album name
     const tracksInfoUrl = `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=${artistEncoded}&album=${albumEncoded}&api_key=${apiKey}&format=json`; // API URL for album tracks
