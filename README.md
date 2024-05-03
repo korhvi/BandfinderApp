@@ -24,6 +24,7 @@ This web application utilizes the Last.fm API to fetch information about artists
 - **Dynamic Event Handling**: All event handlers are added dynamically to ensure clean and maintainable code.
 - **CSS Styling**: The application is styled using CSS to provide a visually appealing interface.
 - **GitHub and Netlify Deployment**: The project is hosted on GitHub and deployed to Netlify for easy access.
+- **Netlify**: https://echobands.netlify.app/
 
 ## Requirements
 
