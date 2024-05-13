@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
 // Function to handle search action
 async function searchHandler() {
     const artistName = document.getElementById('search-input').value.trim(); // Get artist name from input field
