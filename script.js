@@ -1,5 +1,10 @@
+import { apiKey } from './config.js'; // Import API key from config.js
+
 // Wait for the DOM content to be fully loaded before executing JavaScript
 document.addEventListener('DOMContentLoaded', function () {
+    // Define fetchArtistInfo globally
+    window.fetchArtistInfo = fetchArtistInfo;
+
     // Get references to search button and input field
     const searchButton = document.getElementById('search-button');
     const searchInput = document.getElementById('search-input');
@@ -26,9 +31,6 @@ async function searchHandler() {
         await fetchArtistInfo(artistName); // Call fetchArtistInfo function
     }
 }
-
-//api key
-const apiKey = YOUR_API_HERE;
 
 // Function to fetch artist information from Last.fm API
 async function fetchArtistInfo(artist) {
