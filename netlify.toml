@@ -1,3 +1,6 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+[context.production.environment]
+  VITE_LASTFM_KEY = "dfa5ecd46c640751eb3a57f30ae610ce"

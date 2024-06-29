@@ -5,6 +5,6 @@ dotenv.config();
 
 export default defineConfig({
   define: {
-    'process.env': process.env
+    'import.meta.env': process.env
   }
 });
