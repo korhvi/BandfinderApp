@@ -1,3 +1,5 @@
-const apiKey = 'YOUR_API_KEY';
+const config = {
+    apiKey: import.meta.env.VITE_LASTFM_KEY,
+};
 
-export { apiKey };
+export default config;
