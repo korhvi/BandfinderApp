@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite';
-import dotenv from 'dotenv';
+import { defineConfig } from 'vite'
+import dotenv from 'dotenv'
 
-dotenv.config();
+dotenv.config()
 
 export default defineConfig({
   define: {
@@ -9,4 +9,4 @@ export default defineConfig({
       VITE_LASTFM_KEY: process.env.VITE_LASTFM_KEY
     }
   }
-});
+})
