@@ -1,4 +1,3 @@
-
 // Wait for the DOM content to be fully loaded before executing JavaScript
 document.addEventListener('DOMContentLoaded', function () {
     // Define fetchArtistInfo globally
@@ -26,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     handleApiKey()
 })
 
+
 // Function to handle actions that depend on apiKey
 async function handleApiKey() {
     try {
@@ -39,7 +39,7 @@ async function handleApiKey() {
 
 // Function to fetch the API key
 async function fetchApiKey() {
-    return (await import('./config.js')).default.apiKey
+    return import.meta.env.VITE_LASTFM_KEY
 }
 
 // Function to handle search action
