@@ -5,6 +5,8 @@ dotenv.config();
 
 export default defineConfig({
   define: {
-    'import.meta.env': process.env
+    'import.meta.env': {
+      VITE_LASTFM_KEY: process.env.VITE_LASTFM_KEY
+    }
   }
 });
