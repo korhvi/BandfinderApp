@@ -1,10 +1,12 @@
-import { defineConfig } from 'vite';
-import dotenv from 'dotenv';
+import { defineConfig } from 'vite'
+import dotenv from 'dotenv'
 
-dotenv.config();
+dotenv.config()
 
 export default defineConfig({
   define: {
-    'import.meta.env.VITE_LASTFM_KEY': JSON.stringify(process.env.VITE_LASTFM_KEY)
+    'import.meta.env': {
+      VITE_LASTFM_KEY: process.env.VITE_LASTFM_KEY
+    }
   }
-});
+})
