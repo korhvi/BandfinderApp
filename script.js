@@ -1,3 +1,4 @@
+
 // Wait for the DOM content to be fully loaded before executing JavaScript
 document.addEventListener('DOMContentLoaded', function () {
     // Define fetchArtistInfo globally
