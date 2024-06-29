@@ -1,0 +1,13 @@
+{
+  "name": "EchoBands",
+  "version": "1.0.0",
+  "description": "Band finder App",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^5.3.2"
+  }
+}
