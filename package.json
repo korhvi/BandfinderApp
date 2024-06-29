@@ -9,9 +9,5 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build"
-  },
-  "dependencies": {
-    "dependency1": "^1.0.0",
-    "dependency2": "^2.0.0"
   }
 }
