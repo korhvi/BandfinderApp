@@ -1,9 +1,12 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 export default defineConfig({
-  plugins: [vue()],
   define: {
-    'import.meta.env.VITE_LASTFM_KEY': JSON.stringify(process.env.VITE_LASTFM_KEY),
-  },
-});
+    'import.meta.env': {
+      VITE_LASTFM_KEY: process.env.VITE_LASTFM_KEY
+    }
+  }
+})
