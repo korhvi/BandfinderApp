@@ -1,5 +1,5 @@
 const config = {
-  apiKey: process.env.VITE_LASTFM_KEY
+  apiKey: import.meta.env.VITE_LASTFM_KEY
 };
 
 export default config;
