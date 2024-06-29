@@ -1,7 +1,10 @@
 {
-  "name": "ECHOBANDS",
+  "devDependencies": {
+    "vite": "^5.3.2"
+  },
+  "name": "EchoBands",
   "version": "1.0.0",
-  "description": "Band finder app",
+  "description": "Band finder App",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
@@ -10,8 +13,5 @@
   "dependencies": {
     "dependency1": "^1.0.0",
     "dependency2": "^2.0.0"
-  },
-  "devDependencies": {
-    "vite": "^5.3.2"
   }
 }
